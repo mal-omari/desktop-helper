@@ -1,0 +1,284 @@
+:root {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #e8eaed;
+  background: transparent;
+  --bg: rgba(22, 24, 28, 0.92);
+  --bg-elevated: rgba(32, 35, 42, 0.95);
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #6ea8fe;
+  --accent-dim: rgba(110, 168, 254, 0.15);
+  --warn: #ffb86c;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+}
+
+.app-shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.app-shell.loading {
+  align-items: center;
+  justify-content: center;
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+
+.titlebar-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.titlebar-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.titlebar-nav button,
+.titlebar-actions button {
+  background: transparent;
+  border: none;
+  color: #aab2bd;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.titlebar-nav button.active,
+.titlebar-actions button.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.titlebar-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.app-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-view,
+.settings-view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.empty-hint {
+  color: #8b949e;
+  font-size: 13px;
+}
+
+.msg {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+}
+
+.msg-user {
+  align-self: flex-end;
+  max-width: 92%;
+  background: var(--accent-dim);
+}
+
+.msg-role {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8b949e;
+  margin-bottom: 4px;
+}
+
+.msg-body {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.msg-body.markdown :is(p, ul, ol) {
+  margin: 0.35em 0;
+}
+
+.composer {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.composer input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #0d1117;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e8eaed;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pending-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.pending-card {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: rgba(110, 168, 254, 0.08);
+}
+
+.pending-card.warn {
+  border-color: var(--warn);
+  background: rgba(255, 184, 108, 0.08);
+}
+
+.pending-label {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pending-preview {
+  margin: 0 0 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+.pending-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-view section {
+  margin-bottom: 16px;
+}
+
+.settings-view h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.settings-view label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #aab2bd;
+}
+
+.settings-view label.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+.settings-view input,
+.settings-view select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+}
+
+.hint {
+  font-size: 12px;
+  color: #8b949e;
+  margin: 0 0 10px;
+}
+
+.warn {
+  font-size: 12px;
+  color: var(--warn);
+}
+
+.security-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: #aab2bd;
+}
+
+code {
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
